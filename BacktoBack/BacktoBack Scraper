@@ -1,0 +1,54 @@
+
+"""
+Requirements
+Needs python 3.6
+
+"""
+
+import requests
+import sys
+
+
+def link_preperation():
+    links_final = []
+
+    with open("index.txt") as f:
+        links_list_raw = (f.read().splitlines())
+    for prepared_end in links_list_raw:
+        links_final.append(prepared_end.replace(" ", "%20"))
+    return links_final
+
+
+# works for vids - if needed i can change for make fxns for other formats too
+def download(url, path, iteration):
+    with open(path, 'wb') as f:
+
+        print(f"Downloaded started | File number : {iteration}")
+        response = requests.get(url, stream=True)
+        total = response.headers.get('content-length')
+
+        if total is None:
+            f.write(response.content)
+        else:
+            downloaded = 0
+            total = int(total)
+            for data in response.iter_content(chunk_size=max(int(total / 1000), 1024 * 1024)):
+                downloaded += len(data)
+                f.write(data)
+                done = int(50 * downloaded / total)
+                sys.stdout.write('\r[{}{}]'.format('█' * done, '.' * (50 - done)))
+                sys.stdout.flush()
+            print(f"File Number {iteration} downloaded")
+    sys.stdout.write('\n')
+
+
+if __name__ == '__main__':
+    file_number = 0
+    links_list = link_preperation()
+    for query in links_list:
+        dwn_link = "https://tutnetflix.mlwdl.workers.dev/BackToBackSwe.com%20-%20Coding%20interview%20class/Updated%2022-03-2020/" + query+".mp4"
+        file_name = query.replace("%20", " ")
+        file_path = input() + "\\" + file_name
+        file_number += 1
+        download(dwn_link, file_path, file_number)
+
