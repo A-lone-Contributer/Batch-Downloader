@@ -1,5 +1,5 @@
 # Scraper
-https://edu.tuts.workers.dev/ file Scraper
+https://edu.tuts.workers.dev/ Scraper
 
 # USAGE
 
