@@ -1,9 +1,9 @@
 """
 Requirements
 Needs python 3.6
-
 """
 
+import os.path
 import requests
 import sys
 
@@ -47,8 +47,13 @@ if __name__ == '__main__':
     file_input = input()
     links_list = link_preperation()
     for query in links_list:
-        dwn_link = "https://tutnetflix.mlwdl.workers.dev/BackToBackSwe.com%20-%20Coding%20interview%20class/Updated%2022-03-2020/" + query + ".mp4"
+        dwn_link = "https://tutnetflix.mlwdl.workers.dev/BackToBackSwe.com%20-%20Coding%20interview%20class/Updated" \
+                   "%2022-03-2020/" + query + ".mp4 "
         file_name = query.replace("%20", " ")
         file_path = file_input + "\\" + file_name + ".mp4"
         file_number += 1
-        download(dwn_link, file_path, file_number)
+        if os.path.exists(file_path):
+            print("Already Downloaded.. Skipped!")
+            continue
+        else:
+            download(dwn_link, file_path, file_number)
