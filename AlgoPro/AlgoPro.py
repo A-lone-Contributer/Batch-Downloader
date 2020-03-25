@@ -9,7 +9,7 @@ import sys
 
 def link_preperation():
     links_final = []
-    
+
     with open("index.txt") as f:
         links_list_raw = (f.read().splitlines())
     for prepared_end in links_list_raw:
@@ -36,7 +36,8 @@ def download(url, path, iteration):
                 done = int(50 * downloaded / total)
                 sys.stdout.write('\r[{}{}]'.format('█' * done, '.' * (50 - done)))
                 sys.stdout.flush()
-            print(f"File Number {iteration} downloaded")
+            print()
+            print(f"File Number {iteration} downloaded!")
     sys.stdout.write('\n')
 
 
@@ -45,7 +46,6 @@ if __name__ == '__main__':
     file_input = input()
     links_list = link_preperation()
     for query in links_list:
-
         dwn_link = "https://edu.tuts.workers.dev/[%20Techseries.dev%20]%20-Tech%20Interview%20Pro/AlgoPro%20_" \
                    "%20Coding%20Interview%20Practice%20Sessions/" + query
         file_name = query.replace("%20", " ")
