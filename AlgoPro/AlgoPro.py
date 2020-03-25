@@ -42,12 +42,13 @@ def download(url, path, iteration):
 
 if __name__ == '__main__':
     file_number = 0
+    file_input = input()
     links_list = link_preperation()
     for query in links_list:
 
         dwn_link = "https://edu.tuts.workers.dev/[%20Techseries.dev%20]%20-Tech%20Interview%20Pro/AlgoPro%20_" \
                    "%20Coding%20Interview%20Practice%20Sessions/" + query
         file_name = query.replace("%20", " ")
-        file_path = input() + "\\" + file_name
+        file_path = file_input + "\\" + file_name
         file_number += 1
         download(dwn_link, file_path, file_number)
