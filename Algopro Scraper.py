@@ -49,6 +49,6 @@ if __name__ == '__main__':
         dwn_link = "https://edu.tuts.workers.dev/[%20Techseries.dev%20]%20-Tech%20Interview%20Pro/AlgoPro%20_" \
                    "%20Coding%20Interview%20Practice%20Sessions/" + query
         file_name = query.replace("%20", " ")
-        file_path = r"C:\Users\acer\Downloads" + "\\" + file_name
+        file_path = input() + "\\" + file_name
         file_number += 1
         download(dwn_link, file_path, file_number)
