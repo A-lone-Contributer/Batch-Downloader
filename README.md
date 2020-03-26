@@ -1,5 +1,5 @@
-# Scraper
-Scrape TuTNeFlix.com server files(video list)
+# Downloader
+Batch Download TuTNeFlix.com server files(video list)
 
 # USAGE
 
