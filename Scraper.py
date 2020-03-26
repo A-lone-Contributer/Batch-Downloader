@@ -10,8 +10,9 @@ import sys
 
 def link_preperation(url):
     links_final = []
-    r = requests.get(url + "videos.txt")
-    open('videos.txt', 'wb').write(r.content)
+    if not os.path.exists("videos.txt"):
+        r = requests.get(url + "videos.txt")
+        open('videos.txt', 'wb').write(r.content)
     with open("videos.txt") as f:
         links_list_raw = (f.read().splitlines())
     for prepared_end in links_list_raw:
