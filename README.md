@@ -1,8 +1,7 @@
 # Downloader
-Batch Download TuTNeFlix.com server files(video list)
+Batch Download videos posted on TuTNeFlix.com server
 
 # Usage
-
 Download the .py file.<br />
 Run the script. </br>
 Give the directory link without any quotes or any other character.</br>
