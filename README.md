@@ -1,5 +1,5 @@
 # Scraper
-https://edu.tuts.workers.dev/ Scraper
+Scrape TuTNeFlix.com server files(video list)
 
 # USAGE
 
