@@ -9,5 +9,8 @@ Give the directory link without any quotes or any other character.</br>
 Give the path where you want to download without any quotes or any other character.
 Enter the start and end range (both should be specified)
 
+# NOTE :
+WORKS FOR THE FILES DIRECTORY WHERE THERE IS A videos.txt FILE.
+
 # Requirements
 Python 3.6 or above
