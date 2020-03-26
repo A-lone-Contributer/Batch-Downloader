@@ -3,12 +3,11 @@ https://edu.tuts.workers.dev/ Scraper
 
 # USAGE
 
-Download both the .txt and .py file and make sure both are in the same project directory.<br />
+Download the .py file.<br />
 Run the script. </br>
+Give the directory link without any quotes or any other character.</br>
 Give the path where you want to download without any quotes or any other character.
+Enter the start and end range (both should be specified)
 
 # Requirements
 Python 3.6 or above
-
-
-NOTE : Currently it scrapes only a specific course. The functionality can be futher scaled.
