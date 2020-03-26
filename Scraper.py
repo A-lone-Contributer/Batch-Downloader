@@ -25,7 +25,6 @@ def download(url, path, iteration):
         sys.stdout.write(f"Downloaded started | File number : {iteration}")
         response = requests.get(url, stream=True)
         total = response.headers.get('content-length')
-
         if total is None:
             f.write(response.content)
         else:
@@ -51,10 +50,8 @@ if __name__ == '__main__':
 
     for query in links_list:
         dwn_link = to_download + query + ".mp4"
-
         file_name = query.replace("%20", " ")
         file_path = file_input + "\\" + file_name + ".mp4"
-
         itr += 1
         if os.path.exists(file_path):
             print("Already Downloaded.. Skipped!")
