@@ -10,7 +10,7 @@ import sys
 
 def link_preperation(url):
     links_final = []
-    r = requests.get(url + "videos.txt", allow_redirects=True)
+    r = requests.get(url + "videos.txt")
     open('videos.txt', 'wb').write(r.content)
     with open("videos.txt") as f:
         links_list_raw = (f.read().splitlines())
@@ -21,7 +21,6 @@ def link_preperation(url):
 
 def download(url, path, iteration):
     with open(path, 'wb') as f:
-
         sys.stdout.write(f"Downloaded started | File number : {iteration}")
         response = requests.get(url, stream=True)
         total = response.headers.get('content-length')
@@ -47,12 +46,14 @@ if __name__ == '__main__':
     print("***** SCRAPER ******")
     to_download = input("Paste the link where the videos are located: ")
     file_input = input("Enter the Location where you want to download: ")
-    start, end = map(int, input("Enter the start and end range: ").split())
-    links_list = link_preperation(to_download)
-    for query in links_list[start:end + 1]:
+    links_list = link_preperation(to_download.rstrip())
+
+    for query in links_list:
         dwn_link = to_download + query + ".mp4"
+
         file_name = query.replace("%20", " ")
         file_path = file_input + "\\" + file_name + ".mp4"
+
         itr += 1
         if os.path.exists(file_path):
             print("Already Downloaded.. Skipped!")
