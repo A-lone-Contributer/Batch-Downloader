@@ -1,8 +1,3 @@
-"""
-Requirements
-Needs python 3.6
-"""
-
 import os.path
 import requests
 import sys
@@ -25,6 +20,7 @@ def download(url, path, iteration):
         sys.stdout.write(f"Downloaded started | File number : {iteration}")
         response = requests.get(url, stream=True)
         total = response.headers.get('content-length')
+
         if total is None:
             f.write(response.content)
         else:
@@ -44,14 +40,17 @@ def download(url, path, iteration):
 if __name__ == '__main__':
     itr = 0
     print("***** SCRAPER ******")
-    to_download = input("Paste the link where the videos are located: ")
+    to_download = input("Paste the link where the videos are located on FtuNetflix server: ")
     file_input = input("Enter the Location where you want to download: ")
+    start, end = map(int, input("Enter the start and end video index (starts from 1): ").split())
     links_list = link_preperation(to_download.rstrip())
 
-    for query in links_list:
+    for query in links_list[start - 1:end + 1]:
         dwn_link = to_download + query + ".mp4"
+
         file_name = query.replace("%20", " ")
         file_path = file_input + "\\" + file_name + ".mp4"
+
         itr += 1
         if os.path.exists(file_path):
             print("Already Downloaded.. Skipped!")
