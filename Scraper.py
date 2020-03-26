@@ -8,17 +8,17 @@ import requests
 import sys
 
 
-def link_preperation():
+def link_preperation(url):
     links_final = []
-
-    with open("index.txt") as f:
+    r = requests.get(url + "videos.txt", allow_redirects=True)
+    open('videos.txt', 'wb').write(r.content)
+    with open("videos.txt") as f:
         links_list_raw = (f.read().splitlines())
     for prepared_end in links_list_raw:
         links_final.append(prepared_end.replace(" ", "%20"))
     return links_final
 
 
-# works for vids - if needed i can change for make fxns for other formats too
 def download(url, path, iteration):
     with open(path, 'wb') as f:
 
@@ -43,17 +43,19 @@ def download(url, path, iteration):
 
 
 if __name__ == '__main__':
-    file_number = 0
-    file_input = input()
-    links_list = link_preperation()
-    for query in links_list:
-        dwn_link = "https://tutnetflix.mlwdl.workers.dev/BackToBackSwe.com%20-%20Coding%20interview%20class/Updated" \
-                   "%2022-03-2020/" + query + ".mp4 "
+    itr = 0
+    print("***** SCRAPER ******")
+    to_download = input("Paste the link where the videos are located: ")
+    file_input = input("Enter the Location where you want to download: ")
+    start, end = map(int, input("Enter the start and end range: ").split())
+    links_list = link_preperation(to_download)
+    for query in links_list[start:end + 1]:
+        dwn_link = to_download + query + ".mp4"
         file_name = query.replace("%20", " ")
         file_path = file_input + "\\" + file_name + ".mp4"
-        file_number += 1
+        itr += 1
         if os.path.exists(file_path):
             print("Already Downloaded.. Skipped!")
             continue
         else:
-            download(dwn_link, file_path, file_number)
+            download(dwn_link, file_path, itr)
