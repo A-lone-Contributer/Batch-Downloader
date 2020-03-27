@@ -38,12 +38,13 @@ def download(url, path, iteration):
 
 
 if __name__ == '__main__':
-    itr = 0
+
     print("***** SCRAPER ******")
     to_download = input("Paste the link where the videos are located on FtuNetflix server: ")
     file_input = input("Enter the Location where you want to download: ")
-    start, end = map(int, input("Enter the start and end video index (starts from 1): ").split())
+    start, end = map(int, input("Enter the start and end video index: ").split())
     links_list = link_preperation(to_download.rstrip())
+    itr = start - 1
 
     for query in links_list[start - 1:end + 1]:
         dwn_link = to_download + query + ".mp4"
